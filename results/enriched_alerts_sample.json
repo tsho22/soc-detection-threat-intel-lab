@@ -1,0 +1,100 @@
+{
+  "generated": "2026-02-12T07:32:15.110169",
+  "total_ips_analyzed": 3,
+  "malicious_ips_found": 2,
+  "results": [
+    {
+      "ip": "24.84.207.4",
+      "alert_count": 11,
+      "threat_score": 0,
+      "verdict": "LOW",
+      "otx": {
+        "success": true,
+        "pulse_count": 0,
+        "reputation": 0,
+        "is_malicious": false,
+        "pulses": [],
+        "country": "Canada",
+        "asn": "AS6327 shaw communications inc."
+      },
+      "sample_signatures": [
+        "CUSTOM BRUTEFORCE SSH Multiple Attempts"
+      ]
+    },
+    {
+      "ip": "45.227.254.170",
+      "alert_count": 1,
+      "threat_score": 100,
+      "verdict": "CRITICAL",
+      "otx": {
+        "success": true,
+        "pulse_count": 40,
+        "reputation": 0,
+        "is_malicious": true,
+        "pulses": [
+          {
+            "name": "Honeypot Data \u2013 T-Pot - Sydney, Australia - February 2026",
+            "tags": [
+              "tpot",
+              "honeypot",
+              "sensor-tagged",
+              "cowrie",
+              "suricata"
+            ],
+            "created": "2026-02-01"
+          },
+          {
+            "name": "Honeypot Data - February 2026 - Cowrie",
+            "tags": [
+              "sip",
+              "cisco",
+              "sftp",
+              "sentrypeer",
+              "cowrie"
+            ],
+            "created": "2026-02-01"
+          },
+          {
+            "name": "LCIA HoneyNet Data - February 2026 - Cowrie",
+            "tags": [
+              "cowrie",
+              "sip",
+              "ssh",
+              "cisco",
+              "sftp"
+            ],
+            "created": "2026-02-01"
+          },
+          {
+            "name": "SSH Brute-Force Honeypot Live",
+            "tags": [
+              "Bruteforce",
+              "Brute-Force",
+              "SSH",
+              "Honeypot"
+            ],
+            "created": "2021-07-13"
+          },
+          {
+            "name": "PurpleSynapz",
+            "tags": [],
+            "created": "2019-12-05"
+          }
+        ],
+        "country": "Belize",
+        "asn": "AS267784 flyservers s.a."
+      },
+      "sample_signatures": [
+        "ET COMPROMISED Known Compromised or Hostile Host Traffic group 12"
+      ]
+    },
+    {
+      "ip": "80.94.92.186",
+      "alert_count": 1,
+      "threat_score": 100,
+      "verdict": "CRITICAL",
+      "otx": {
+        "success": true,
+        "pulse_count": 50,
+        "reputation": 0,
+        "is_malicious": true,

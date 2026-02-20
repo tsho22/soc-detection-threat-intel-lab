@@ -1,0 +1,51 @@
+# API Keys & Secrets
+config.py
+*.key
+*.pem
+*.ppk
+secrets/
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# Logs
+*.log
+eve.json
+*.log.*
+/var/log/
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+
+# Large files
+*.gz
+*.zip
+*.tar

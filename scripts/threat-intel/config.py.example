@@ -1,0 +1,19 @@
+# Threat Intelligence API Configuration
+# INSTRUCTIONS: Copy this file to config.py and add your real API keys
+
+# AlienVault OTX API Key (Get yours at: https://otx.alienvault.com)
+OTX_API_KEY = "your_otx_api_key_here"
+
+# AbuseIPDB API Key (Get yours at: https://www.abuseipdb.com/account/api)
+ABUSEIPDB_API_KEY = "your_abuseipdb_key_here"
+
+# VirusTotal API Key (Optional)
+VIRUSTOTAL_API_KEY = ""
+
+# Elasticsearch Configuration
+ES_HOST = "localhost"
+ES_PORT = 9200
+ES_INDEX = "suricata-*"
+
+# Output file for enriched alerts
+OUTPUT_FILE = "/home/ubuntu/soc-lab/threat-intel/enriched_alerts.json"

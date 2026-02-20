@@ -1,0 +1,49 @@
+# SOC LAB CUSTOM DETECTION RULES
+
+# Malware User Agents
+alert http any any -> any any (msg:"CUSTOM MALWARE Suspicious User-Agent BlackSun"; flow:established,to_server; content:"BlackSun"; http_user_agent; classtype:trojan-activity; sid:1000001; rev:1;)
+
+alert http any any -> any any (msg:"CUSTOM MALWARE Metasploit User-Agent"; flow:established,to_server; content:"Metasploit"; http_user_agent; classtype:trojan-activity; sid:1000003; rev:1;)
+
+# Port Scanning
+alert tcp any any -> $HOME_NET any (msg:"CUSTOM SCAN Potential Port Scan"; flags:S; threshold:type both, track by_src, count 20, seconds 60; classtype:attempted-recon; sid:1000004; rev:1;)
+
+# Suspicious DNS
+alert dns any any -> any any (msg:"CUSTOM DNS Suspicious xyz TLD"; dns.query; content:".xyz"; nocase; classtype:trojan-activity; sid:1000005; rev:1;)
+
+alert dns any any -> any any (msg:"CUSTOM DNS Suspicious tk TLD"; dns.query; content:".tk"; nocase; classtype:trojan-activity; sid:1000006; rev:1;)
+
+# SQL Injection
+alert http any any -> any any (msg:"CUSTOM WEB SQL Injection UNION SELECT"; flow:established,to_server; content:"union"; nocase; http_uri; content:"select"; nocase; within:100; classtype:web-application-attack; sid:1000007; rev:1;)
+
+alert http any any -> any any (msg:"CUSTOM WEB SQL Injection OR equals"; flow:established,to_server; content:"or"; nocase; http_uri; pcre:"/or.{1,5}1.{1,5}=.{1,5}1/i"; classtype:web-application-attack; sid:1000008; rev:1;)
+
+# Data Exfiltration
+alert http $HOME_NET any -> any any (msg:"CUSTOM EXFIL POST to xyz domain"; flow:established,to_server; content:"POST"; http_method; content:".xyz"; http_host; classtype:policy-violation; sid:1000009; rev:1;)
+
+# Malware Downloads
+alert http any any -> $HOME_NET any (msg:"CUSTOM MALWARE EXE Content-Type"; flow:established,to_client; content:"application/x-msdownload"; http_header; classtype:trojan-activity; sid:1000010; rev:1;)
+
+# C2 Communications
+alert tcp $HOME_NET any -> !$HOME_NET [4444,5555,6666,7777,8888,9999] (msg:"CUSTOM C2 Outbound to Common C2 Port"; flow:established,to_server; classtype:trojan-activity; sid:1000012; rev:1;)
+
+# SSH Brute Force
+alert ssh any any -> $HOME_NET 22 (msg:"CUSTOM BRUTEFORCE SSH Multiple Attempts"; flow:established; threshold:type both, track by_src, count 5, seconds 60; classtype:attempted-user; sid:1000014; rev:1;)
+
+# Test Traffic
+alert http any any -> any any (msg:"CUSTOM TEST NIDS Test Traffic"; flow:established,to_server; content:"testmynids.org"; http_host; classtype:misc-activity; sid:1000015; rev:1;)
+
+# Crypto Mining
+alert tcp any any -> any [3333,5555,8888,14444] (msg:"CUSTOM MINING Pool Connection"; flow:established,to_server; classtype:trojan-activity; sid:1000016; rev:1;)
+
+# PowerShell Attacks
+alert http any any -> any any (msg:"CUSTOM MALWARE PowerShell DownloadString"; flow:established; content:"powershell"; nocase; http_uri; content:"downloadstring"; nocase; within:200; classtype:trojan-activity; sid:1000017; rev:1;)
+
+# DNS Tunneling
+alert dns $HOME_NET any -> any 53 (msg:"CUSTOM EXFIL Potential DNS Tunneling"; threshold:type both, track by_src, count 100, seconds 60; classtype:policy-violation; sid:1000018; rev:1;)
+
+# Credential Dumping
+alert http any any -> any any (msg:"CUSTOM CREDENTIAL Mimikatz Reference"; flow:established; content:"mimikatz"; nocase; http_uri; classtype:credential-theft; sid:1000019; rev:1;)
+
+# Exploit Kits
+alert http any any -> any any (msg:"CUSTOM EXPLOIT Angler Exploit Kit Pattern"; flow:established; content:"angler"; nocase; http_uri; classtype:attempted-user; sid:1000022; rev:1;)
